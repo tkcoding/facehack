@@ -13,6 +13,7 @@ import { FooterComponent } from './ui/footer/footer.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemsService } from './services/items.service';
 import { FaceComponent } from './face/face.component';
+import { Face2Component } from './face2/face2.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FaceComponent } from './face/face.component';
     DropdownDirective,
     FooterComponent,
     ItemsComponent,
-    FaceComponent
+    FaceComponent,
+    Face2Component
   ],
   imports: [
     BrowserModule,

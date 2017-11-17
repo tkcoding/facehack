@@ -1,7 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      face
+<div class="jumbotron jumbotron-fluid">  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h6>Upload an image to receive recommendations</h6>
+        <image-upload url="https://localhost:5000/img" 
+          (removed)="onRemoved($event)" 
+          (uploadFinished)="onUploadFinished($event)"
+          (uploadStateChanged)="onUploadStateChanged($event)"        
+          [beforeUpload]="onBeforeUpload"
+          buttonCaption="Click to upload"
+          dropBoxMessage="Drag and drop"
+          clearButtonCaption="Clear">
+        </image-upload>
+      </div>
     </div>
   </div>
 </div>
+
+<input type="file" (change)="fileChanged($event)" name="file" accept="image/jpg">

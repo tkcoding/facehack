@@ -5,8 +5,19 @@ $black: rgb(0,0,0);
 $red: rgb(255,0,0);
 
 // Offset top navbar
-body{
-	padding-top:60px
+body {
+    margin-top: 60px;
+    background-color: rgba(225, 225, 225, 0.5);
+}
+
+main {
+    min-height: 80vh;     
+    font-size: 1.5rem;    
+}
+
+main .content {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 a{
