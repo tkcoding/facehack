@@ -1,10 +1,11 @@
 import { ItemsComponent } from './items/items.component';
 import { FaceComponent } from './face/face.component';
+import { Face2Component } from './face2/face2.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const appRoutes: Routes = [ 
- { path: '', component: FaceComponent },
+ { path: '', component: Face2Component },
  { path: 'face', component: FaceComponent },
  { path: 'items', component: ItemsComponent },
 ];

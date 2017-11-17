@@ -1,0 +1,15 @@
+.jumbotron {
+    background-color: white;
+}
+
+.jumbotron-fluid {
+    background-color: white;
+}
+
+.r-content {
+    font-size: 1.15rem;    
+}
+
+.card-title {
+    text-decoration: underline;
+}
