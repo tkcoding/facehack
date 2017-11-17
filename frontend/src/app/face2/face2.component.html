@@ -1,10 +1,14 @@
-<div class="jumbotron jumbotron-fluid">  
+<div class="jumbotron jumbotron-fluid">
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
         <h6>Upload an image to receive recommendations</h6>
-        <button (click)="dostuff2()">dostuff</button>
-        <input type="file" name="file" accept="image/jpg" id="input1">
+        <div>
+          <input type="file" id="input1" accept="image/jpg" class="form-control" name="input1">          
+        </div>
+        <div>
+          <button (click)="dostuff2()" type="button" class="btn btn-secondary">Get Recommendations</button>
+        </div>
       </div>
     </div>
   </div>
