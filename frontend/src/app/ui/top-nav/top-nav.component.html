@@ -9,24 +9,21 @@
 
 <div class="collapse navbar-collapse" id="topnavbar_id" [ngbCollapse]=navCollapsed>
 	<ul class="navbar-nav mr-auto mt-2 mt-md-0">
-		<li class="nav-item" routerLinkActive="active">
+		<!-- <li class="nav-item" routerLinkActive="active">
 			<a class="nav-link">Items</a>
-		</li>
+		</li> -->
 		<li class="nav-item" routerLinkActive="active">
-			<a class="nav-link">Items</a>
-		</li>
-		<li class="nav-item" routerLinkActive="active">
-			<a class="nav-link" routerLink="/items">Items</a>
+			<a class="nav-link" routerLink="/face">Face</a>
 		</li>
 		<li class="nav-item" routerLinkActive="active">
 			<a class="nav-link" routerLink="/items">Items</a>
 		</li>
 	</ul>
 	<ul class="navbar-nav ml-auto mt-2 mt-md-0">
-		<ng-template [ngIf]="!checkAuthentication()">
+		<!-- <ng-template [ngIf]="!checkAuthentication()">
 			<li class="nav-item"><a class="nav-link" routerLink="/items">Items</a></li>
 			<li class="nav-item"><a  class="nav-link" routerLink="/items">Items</a></li>	
-		</ng-template>
+		</ng-template> -->
 		<li class="nav-item" *ngIf="checkAuthentication()" (click)="onLogout()">
 			<a class="nav-link">Log Out</a>
 		</li>	

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ImageUploadModule } from 'angular2-image-upload'
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +12,7 @@ import { DropdownDirective } from './ui/dropdown.directive';
 import { FooterComponent } from './ui/footer/footer.component';
 import { ItemsComponent } from './items/items.component';
 import { ItemsService } from './services/items.service';
+import { FaceComponent } from './face/face.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +20,15 @@ import { ItemsService } from './services/items.service';
     TopNavComponent,
     DropdownDirective,
     FooterComponent,
-    ItemsComponent
+    ItemsComponent,
+    FaceComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
+    ImageUploadModule.forRoot(),
     NgbModule.forRoot()
   ],
   providers: [ItemsService],
