@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ImageUploadModule } from 'angular2-image-upload'
+import { ImageUploadModule } from 'angular2-image-upload';
+import { ResponsiveModule } from 'ng2-responsive';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';

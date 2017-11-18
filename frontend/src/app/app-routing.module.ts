@@ -7,7 +7,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 const appRoutes: Routes = [ 
  { path: '', component: Face2Component },
  { path: 'face', component: FaceComponent },
- { path: 'items', component: ItemsComponent },
+ { path: 'face2', component: Face2Component },
 ];
 
 @NgModule({
