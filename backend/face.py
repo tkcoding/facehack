@@ -22,6 +22,35 @@ CORS(app,resources={r"/*": {"origins": "*"}},allow_headers='*')
 
 print("initiated the app! With a name of:", __name__)
 
+def facecontour_matching(face_contour):
+    dia = [[0,0],[17,142],[42,277],[66,414],[112,535],[187,644],[283,737],[393,824],[520,851],[648,831],[760,748],[858,652],[934,541],[979,416],[1002,280],[1027,144],[1043,-2]]
+    scale = dia[-1][0]/100;
+    dia = np.divide(dia,scale)
+    sq = [[0,0],[7,68],[18,136],[31,204],[55,268],[92,323],[136,372],[188,415],[247,426],[305,414],[356,369],[400,319],[435,264],[458,201],[471,133],[483,65],[489,-3]]
+    scale = sq[-1][0]/100;
+    sq = np.divide(sq,scale)
+    ov = [[0,0],[0,15],[3,31],[5,46],[9,60],[17,71],[28,81],[40,89],[53,91],[66,89],[76,80],[85,71],[92,60],[97,48],[100,34],[102,21],[103,7]]
+    scale = ov[-1][0]/100;
+    ov = np.divide(ov,scale)
+    ro = [[0,0],[1,31],[5,62],[8,92],[15,122],[30,148],[52,170],[77,187],[105,194],[136,192],[166,179],[194,161],[214,138],[225,109],[233,78],[241,47],[246,13]]
+    scale = ro[-1][0]/100;
+    ro = np.divide(ro,scale)
+    he = [[0,0],[6,49],[16,97],[26,143],[44,185],[73,220],[109,251],[147,280],[188,290],[231,282],[272,254],[312,224],[342,188],[360,144],[370,96],[378,46],[384,-7]]
+    scale = he[-1][0]/100;
+    he = np.divide(he,scale)
+    re = [[0,0],[7,68],[18,136],[31,204],[55,268],[92,323],[136,372],[188,415],[247,426],[305,414],[356,369],[400,319],[435,264],[458,201],[471,133],[483,65],[489,-3]]
+    scale = re[-1][0]/100;
+    re = np.divide(re,scale)
+
+    im_cnt = np.subtract(face_contour[:],face_contour[0])
+    scale = im_cnt[-1][0]/100;
+    im_cnt = np.divide(im_cnt,scale)
+
+    sqrt(np.sum(np.power(np.subtract(im_cnt,dia),2)))
+    contour_type = ["diamond.png","square.png","oval.png","rectangle.png","round.png","heart.png"]
+    i, value = min(enumerate([sqrt(np.sum(np.power(np.subtract(im_cnt,dia),2))),sqrt(np.sum(np.power(np.subtract(im_cnt,sq),2))),sqrt(np.sum(np.power(np.subtract(im_cnt,ov),2))),sqrt(np.sum(np.power(np.subtract(im_cnt,re),2))),sqrt(np.sum(np.power(np.subtract(im_cnt,ro),2))),sqrt(np.sum(np.power(np.subtract(im_cnt,he),2)))]), key=itemgetter(1))
+    return contour_type[i]
+
 def process_json(content):
 
     feature_dictionary = {}
@@ -116,7 +145,8 @@ def process_json(content):
         else :
             analysis.append({"recommendation":"Perfect Chin","description":"N/A",
                    "pname":"N/A","productImage":"N/A"})
-    return analysis
+    facecontour_analysis = facecontour_matching(json_result['objects'][1]['landmarks']['faceContour'])
+    return analysis,facecontour_analysis
 
 @app.route('/')
 def index():
@@ -134,8 +164,8 @@ def home():
     #img = Image.open(request.files['file'])
     print(content,sys.stdout)
     sys.stdout.flush()
-    analyzed_json = process_json(content)
-    json_return = {"data":analyzed_json}
+    analyzed_json,facecontour_analysis = process_json(content)
+    json_return = {"data":analyzed_json,"facecountour":facecontour_analysis}
     js = json.dumps(json_return)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
