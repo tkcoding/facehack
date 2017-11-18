@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
+    "ack-angular-webcam": "^1.5.0",
     "angular2-image-upload": "^1.0.0-rc.0",
     "bootstrap": "^4.0.0-alpha.6",
     "classlist.js": "^1.1.20150312",

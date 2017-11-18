@@ -2,6 +2,14 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
+        <div class="text-center">
+          <div class="mb-2">
+            <ack-webcam [(ref)]="webcam" [options]="options" (success)="onCamSuccess($event)" (catch)="onCamError($event)"></ack-webcam>
+          </div>
+          <div class="mb-2">
+            <button (click)="genImage()" type="button" class="btn btn-secondary"> Send Image </button>
+          </div>
+        </div>
         <h6>Upload an image to receive recommendations</h6>
         <div class="mb-2">
           <input type="file" id="input1" accept="image/jpg" class="form-control" name="input1">
@@ -21,7 +29,7 @@
   <h3 class="card-header">Recommendations</h3>
   <div class="card-block">
     <ul class="list-group list-group-flush">
-      <div *ngFor="let r of recs">        
+      <div *ngFor="let r of recs">
         <li class="list-group-item">
           <div class="row">
             <div class="col-md-2">

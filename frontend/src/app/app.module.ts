@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { ResponsiveModule } from 'ng2-responsive';
+import { WebCamModule } from 'ack-angular-webcam';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +33,8 @@ import { Face2Component } from './face2/face2.component';
     HttpModule,
     AppRoutingModule,
     ImageUploadModule.forRoot(),
-    NgbModule.forRoot()
+	NgbModule.forRoot(),
+	WebCamModule
   ],
   providers: [ItemsService],
   bootstrap: [AppComponent]
