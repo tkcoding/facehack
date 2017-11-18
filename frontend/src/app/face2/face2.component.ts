@@ -97,9 +97,7 @@ export class Face2Component implements OnInit {
 			},
 			(error) => {
 				console.log(error);
-				this.recs = [];
-				this.disableCamSend = false;
-				this.fcountour = "";
+				this.disableAndClear();
 			}
 		);
 	}
