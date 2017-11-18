@@ -15,6 +15,8 @@ import numpy as np
 import logging
 from logging.handlers import RotatingFileHandler
 import json
+from math import sqrt,pow
+from operator import itemgetter
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -158,12 +160,12 @@ app = Flask(__name__)
 
 
 @app.route("/img", methods=["POST"])
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+@cross_origin(origin='localhost',headers=['Content-Type','Authorization'])
 def home():
     content = request.get_json()
     #img = Image.open(request.files['file'])
-    print(content,sys.stdout)
-    sys.stdout.flush()
+    # print(content,sys.stdout)
+    # sys.stdout.flush()
     analyzed_json,facecontour_analysis = process_json(content)
     json_return = {"data":analyzed_json,"facecountour":facecontour_analysis}
     js = json.dumps(json_return)
