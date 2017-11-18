@@ -64,10 +64,10 @@ def process_json(content):
     symm_1 = abs(np.divide(float(np.subtract(feature_dictionary['noseBall2'][0],feature_dictionary['mouthOuter2'][0])),float(np.subtract(feature_dictionary['eyeLeft0'][0],feature_dictionary['noseBall2'][0]))))
      
     if symm_1> 1:
-        analysis.append({"recommendation":"Top lip not symmetric, left side longer than right side","description":"Please apply lip liner on the inside of the left lip and outside of the right lip.Add more lipstick to the inner part of the lip.",
+        analysis.append({"recommendation":"Top lip not symmetric, left side longer than right side","description":"Apply lip liner on the inside of the left lip and outside of the right lip. Add more lipstick to the inner part of the lip.",
                    "pname":" Lip liner","productImage":"http://www.wisebread.com/files/fruganomics/u5171/city%20color.jpg"})
     elif symm_1 < 1:
-        analysis.append({"recommendation":"Top lip not symmetric, left side shorter than right side","description":"Please apply lip liner on the outside of the left lip and inside of the right lip.Add more lipstick to the inner part of the lip.",
+        analysis.append({"recommendation":"Top lip not symmetric, left side shorter than right side","description":"Apply lip liner on the outside of the left lip and inside of the right lip. Add more lipstick to the inner part of the lip.",
                    "pname":"Lip liner","productImage":"http://www.wisebread.com/files/fruganomics/u5171/city%20color.jpg"})
     else:
         analysis.append({"recommendation":"Lips symmetric","description":"N/A",
