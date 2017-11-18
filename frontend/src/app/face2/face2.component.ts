@@ -28,17 +28,7 @@ export class Face2Component implements OnInit {
 	}
 
 	postFormData(formData) {
-		console.log(formData.get('file'));
-		this.dostuff2('cam',formData.get('file'));
-		// const config = {
-		// 	method: "post",
-		// 	url: "http://www.aviorsciences.com/",
-		// 	body: formData
-		// }
-
-		// const request = new Request(config)
-
-		// return this.http.request(request)
+		this.dostuff2('cam', formData.get('file'));
 	}
 
 	onCamError(err) { }
@@ -76,7 +66,7 @@ export class Face2Component implements OnInit {
 		let j = JSON.stringify(data);
 
 		this.itemService.postFaceData(j).subscribe(
-			(item: any) => {				
+			(item: any) => {
 				this.recs = item.data;
 				// if (item != null) {
 				// 	console.log(item);
