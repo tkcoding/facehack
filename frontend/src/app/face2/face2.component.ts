@@ -4,6 +4,8 @@ import { ItemsService } from './../services/items.service';
 import { WebCamComponent } from 'ack-angular-webcam';
 import { Http, Request } from '@angular/http';
 import { element } from 'protractor';
+import { Subject } from 'rxjs/Subject';
+import { debounceTime } from 'rxjs/operator/debounceTime';
 
 @Component({
 	selector: 'app-face2',
@@ -14,14 +16,21 @@ export class Face2Component implements OnInit {
 	recs: Rec[];
 	webcam: WebCamComponent;
 	disableCamSend = false;
-	fcountour : string;
+	fcountour: string;
+	private _error = new Subject<string>();
+	errorMessage: string;
 
 	constructor(private itemService: ItemsService, private http: Http) {
 		this.recs = new Array<Rec>();
 	}
 
 	ngOnInit() {
+		this._error.subscribe((message) => this.errorMessage = message);
+		debounceTime.call(this._error, 5000).subscribe(() => this.errorMessage = null);
+	}
 
+	changeErrorMessage(msg: string) {
+		this._error.next(msg);
 	}
 
 	gotoRec() {
@@ -47,7 +56,7 @@ export class Face2Component implements OnInit {
 	disableAndClear() {
 		this.disableCamSend = true;
 		this.recs = [];
-		this.fcountour = "";
+		this.fcountour = '';
 	}
 
 	dostuff2(callType, data) {
@@ -82,6 +91,16 @@ export class Face2Component implements OnInit {
 	}// dostuff2 end
 
 	postData(data) {
+		let jObj = JSON.parse(data);
+		console.log(jObj.objects);
+		console.log(jObj.objects.length);
+		if (jObj.objects.length > 2) {
+			this.changeErrorMessage('Ensure only 1 user is visible');
+			this.disableCamSend = false;
+			this.recs = [];
+			this.fcountour = '';
+			return
+		}
 		let j = JSON.stringify(data);
 
 		this.itemService.postFaceData(j).subscribe(
@@ -91,13 +110,15 @@ export class Face2Component implements OnInit {
 				// if (item != null) {
 				// 	console.log(item);
 				// }
-				this.fcountour = "../assets/"+item.facecountour;
-				console.log(this.recs);				
-				this.disableCamSend = false;				
+				this.fcountour = "../assets/" + item.facecountour;
+				console.log(this.recs);
+				this.disableCamSend = false;
 			},
 			(error) => {
 				console.log(error);
-				this.disableAndClear();
+				this.disableCamSend = false;
+				this.recs = [];
+				this.fcountour = '';
 			}
 		);
 	}

@@ -1,4 +1,5 @@
-<div class="jumbotron jumbotron-fluid">
+<ngb-alert *ngIf="errorMessage" type="danger" (close)="errorMessage = null" class="error-alert">{{ errorMessage }}</ngb-alert>
+<div class="jumbotron jumbotron-fluid">  
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
@@ -14,16 +15,16 @@
             </div>
             <div class="col-sm-6">
               <div class="mb-2">
-                  <img [src]="fcountour" alt="face contour" class="f-countour">
+                <img [src]="fcountour" alt="face contour" class="f-countour">
               </div>
               <div class="mb-2">
                 <div *ngIf="recs == [] || recs.length == 0; else elseBlock">
-                    <button type="button" class="btn btn-light" disabled> View Recommendations </button>
+                  <button type="button" class="btn btn-light" disabled> View Recommendations </button>
                 </div>
                 <ng-template #elseBlock>
-                    <button type="button" class="btn btn-light" (click)="gotoRec()"> View Recommendations </button>
+                  <button type="button" class="btn btn-light" (click)="gotoRec()"> View Recommendations </button>
                 </ng-template>
-              </div>             
+              </div>
             </div>
           </div>
         </div>

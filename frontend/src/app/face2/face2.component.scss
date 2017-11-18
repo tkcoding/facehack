@@ -7,7 +7,7 @@
 }
 
 .r-content {
-    font-size: 1.15rem;    
+    font-size: 1.15rem;
 }
 
 .card-title {
@@ -21,7 +21,7 @@
 }
 
 .btn-light:disabled {
-    border-color:gray;
+    border-color: gray;
 }
 
 .f-countour {
@@ -31,4 +31,9 @@
     min-height: 300px;
     border-color: gray;
     border-style: solid;
+}
+
+.error-alert {
+    position: absolute;
+    width: 100%
 }
