@@ -15,8 +15,6 @@ export class Face2Component implements OnInit {
 
 	constructor(private itemService: ItemsService, private http: Http) {
 		this.recs = new Array<Rec>();
-		this.recs.push(new Rec("name1", "abc1", "abcd1", "abcde1"));
-		this.recs.push(new Rec("name2", "abc2", "abcd2", "abcde2"));
 	}
 
 	ngOnInit() {
@@ -30,6 +28,8 @@ export class Face2Component implements OnInit {
 	}
 
 	postFormData(formData) {
+		console.log(formData.get('file'));
+		this.dostuff2('cam',formData.get('file'));
 		// const config = {
 		// 	method: "post",
 		// 	url: "http://www.aviorsciences.com/",
@@ -45,9 +45,16 @@ export class Face2Component implements OnInit {
 
 	onCamSuccess() { }
 
-	dostuff2() {
-		var fileInput = document.getElementById("input1") as HTMLInputElement;
-		var files = fileInput.files;
+	dostuff2(callType, data) {
+		var files;
+		var file;
+		if (callType === 'cam') {
+			file = data;
+		} else {
+			var fileInput = document.getElementById(data) as HTMLInputElement;
+			files = fileInput.files;
+			file = files[0];
+		}
 
 		var xhr = new XMLHttpRequest();
 		var result
@@ -62,19 +69,24 @@ export class Face2Component implements OnInit {
 		xhr.open("POST", "https://dev.sighthoundapi.com/v1/detections?type=face,person&faceOption=landmark,gender");
 		xhr.setRequestHeader("Content-type", "application/octet-stream");
 		xhr.setRequestHeader("X-Access-Token", "fGF1DfdEWCeTaAqAdEsHXY0MMuo92avXuOhL");
-		xhr.send(files[0]);
+		xhr.send(file);
 	}// dostuff2 end
 
 	postData(data) {
 		let j = JSON.stringify(data);
 
 		this.itemService.postFaceData(j).subscribe(
-			(item: any) => {
-				if (item != null) {
-
-				}
+			(item: any) => {				
+				this.recs = item.data;
+				// if (item != null) {
+				// 	console.log(item);
+				// }
+				console.log(this.recs);
 			},
-			(error) => console.log(error)
+			(error) => {
+				console.log(error);
+				this.recs = [];
+			}
 		);
 	}
 
