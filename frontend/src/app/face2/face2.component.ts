@@ -12,6 +12,7 @@ import { Http, Request } from '@angular/http';
 export class Face2Component implements OnInit {
 	recs: Rec[];
 	webcam: WebCamComponent;
+	disableCamSend = false;
 
 	constructor(private itemService: ItemsService, private http: Http) {
 		this.recs = new Array<Rec>();
@@ -22,6 +23,7 @@ export class Face2Component implements OnInit {
 	}
 
 	genImage() {
+		this.disableCamSend = true;
 		this.webcam.captureAsFormData({ fileName: 'file.jpg' })
 			.then(formData => this.postFormData(formData))
 			.catch(e => console.error(e));
@@ -36,6 +38,7 @@ export class Face2Component implements OnInit {
 	onCamSuccess() { }
 
 	dostuff2(callType, data) {
+		this.disableCamSend = true;
 		var files;
 		var file;
 		if (callType === 'cam') {
@@ -72,10 +75,12 @@ export class Face2Component implements OnInit {
 				// 	console.log(item);
 				// }
 				console.log(this.recs);
+				this.disableCamSend = false;
 			},
 			(error) => {
 				console.log(error);
 				this.recs = [];
+				this.disableCamSend = false;
 			}
 		);
 	}

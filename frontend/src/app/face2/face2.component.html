@@ -7,7 +7,7 @@
             <ack-webcam [(ref)]="webcam" [options]="options" (success)="onCamSuccess($event)" (catch)="onCamError($event)"></ack-webcam>
           </div>
           <div class="mb-2">
-            <button (click)="genImage()" type="button" class="btn btn-secondary"> Send Image </button>
+            <button (click)="genImage()" type="button" class="btn btn-light" [disabled]="disableCamSend"> Send Image </button>
           </div>
         </div>
         <h6>Upload an image to receive recommendations</h6>
@@ -15,7 +15,7 @@
           <input type="file" id="input1" accept="image/jpg" class="form-control" name="input1">
         </div>
         <div class="mb-2">
-          <button (click)="dostuff2('upload','input1')" type="button" class="btn btn-secondary">Get Recommendations</button>
+          <button (click)="dostuff2('upload','input1')" type="button" class="btn btn-light" [disabled]="disableCamSend">Get Recommendations</button>
         </div>
       </div>
     </div>
