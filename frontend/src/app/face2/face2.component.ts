@@ -30,7 +30,7 @@ export class Face2Component implements OnInit {
 	}
 
 	genImage() {
-		this.disableCamSend = true;
+		this.disableAndClear()
 		this.webcam.captureAsFormData({ fileName: 'file.jpg' })
 			.then(formData => this.postFormData(formData))
 			.catch(e => console.error(e));
@@ -44,8 +44,14 @@ export class Face2Component implements OnInit {
 
 	onCamSuccess() { }
 
-	dostuff2(callType, data) {
+	disableAndClear() {
 		this.disableCamSend = true;
+		this.recs = [];
+		this.fcountour = "";
+	}
+
+	dostuff2(callType, data) {
+		this.disableAndClear();
 		var files;
 		var file;
 		if (callType === 'cam') {
@@ -64,7 +70,7 @@ export class Face2Component implements OnInit {
 				console.log('success!!');
 				this.postData(result);
 			}
-			else if (xhr.readyState === 4 && xhr.status === 400) {
+			else if (xhr.readyState === 4 && xhr.status !== 200) {
 				this.disableCamSend = false;
 			}
 		}
