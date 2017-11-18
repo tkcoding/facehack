@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ItemsService } from './../services/items.service';
 import { WebCamComponent } from 'ack-angular-webcam';
 import { Http, Request } from '@angular/http';
+import { element } from 'protractor';
 
 @Component({
 	selector: 'app-face2',
@@ -13,6 +14,7 @@ export class Face2Component implements OnInit {
 	recs: Rec[];
 	webcam: WebCamComponent;
 	disableCamSend = false;
+	fcountour : string;
 
 	constructor(private itemService: ItemsService, private http: Http) {
 		this.recs = new Array<Rec>();
@@ -20,6 +22,11 @@ export class Face2Component implements OnInit {
 
 	ngOnInit() {
 
+	}
+
+	gotoRec() {
+		var e = document.getElementById("rec-card");
+		e.scrollIntoView(true)
 	}
 
 	genImage() {
@@ -78,6 +85,7 @@ export class Face2Component implements OnInit {
 				// if (item != null) {
 				// 	console.log(item);
 				// }
+				this.fcountour = "../assets/"+item.facecountour;
 				console.log(this.recs);				
 				this.disableCamSend = false;				
 			},
@@ -85,6 +93,7 @@ export class Face2Component implements OnInit {
 				console.log(error);
 				this.recs = [];
 				this.disableCamSend = false;
+				this.fcountour = "";
 			}
 		);
 	}

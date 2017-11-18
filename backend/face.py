@@ -96,16 +96,19 @@ def process_json(content):
      
     if symm_1> 1:
         analysis.append({"recommendation":"Top lip not symmetric, left side longer than right side","description":"Apply lip liner on the inside of the left lip and outside of the right lip. Add more lipstick to the inner part of the lip.",
-                   "pname":" Lip liner","productImage":"http://www.wisebread.com/files/fruganomics/u5171/city%20color.jpg"})
+                   "pname":" Lip liner","productImage":"https://www.nyxcosmetics.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-cpd-nyxusa-master-catalog/default/dwbbca9dd2/ProductImages/Lips/Slim_Lip_Pencil/Slim_Lip_Pencil/slimlippencil_main.jpg?sw=600&sh=600&sm=fit"})
     elif symm_1 < 1:
         analysis.append({"recommendation":"Top lip not symmetric, left side shorter than right side","description":"Apply lip liner on the outside of the left lip and inside of the right lip. Add more lipstick to the inner part of the lip.",
-                   "pname":"Lip liner","productImage":"http://www.wisebread.com/files/fruganomics/u5171/city%20color.jpg"})
+                   "pname":"Lip liner","productImage":"https://www.nyxcosmetics.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-cpd-nyxusa-master-catalog/default/dwbbca9dd2/ProductImages/Lips/Slim_Lip_Pencil/Slim_Lip_Pencil/slimlippencil_main.jpg?sw=600&sh=600&sm=fit"})
     else:
         analysis.append({"recommendation":"Lips symmetric","description":"N/A",
                    "pname":"N/A","productImage":"N/A"})
     #Nose width
     if canon_8 < 1:
         analysis.append({"recommendation":"Nose width too large","description":"Perform nose contouring",
+                   "pname":" Countouring powder","productImage":"http://www.wisebread.com/files/fruganomics/u5171/city%20color.jpg"})
+    elif canon_8 > 1:
+        analysis.append({"recommendation":"Nose width too small","description":"Contour sides of the nose bridge",
                    "pname":" Countouring powder","productImage":"http://www.wisebread.com/files/fruganomics/u5171/city%20color.jpg"})
     else:
         analysis.append({"recommendation":"Perfect Nose width","description":"N/A",
@@ -136,14 +139,14 @@ def process_json(content):
     if canon_6 - canon_8 > 0:
         if golden_7 > 1:
             analysis.append({"recommendation":"Chin too long","description":"Perform chin contouring",
-                   "pname":"","productImage":"https://media.allure.com/photos/581a4de84e15a10a15009790/master/pass/Countour-compilation.jpg"})
+                   "pname":"Countouring powder","productImage":"https://media.allure.com/photos/581a4de84e15a10a15009790/master/pass/Countour-compilation.jpg"})
         else: 
             analysis.append({"recommendation":"Perfect Chin","description":"N/A",
                    "pname":"N/A","productImage":"N/A"})
     else :
         if golden_6 > 1:
             analysis.append({"recommendation":"Chin too long","description":"Perform chin contouring",
-                   "pname":"N/A","productImage":"https://media.allure.com/photos/581a4de84e15a10a15009790/master/pass/Countour-compilation.jpg"})
+                   "pname":"Countouring powder","productImage":"https://media.allure.com/photos/581a4de84e15a10a15009790/master/pass/Countour-compilation.jpg"})
         else :
             analysis.append({"recommendation":"Perfect Chin","description":"N/A",
                    "pname":"N/A","productImage":"N/A"})

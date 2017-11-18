@@ -19,3 +19,16 @@
     background-color: white;
     border-color: black;
 }
+
+.btn-light:disabled {
+    border-color:gray;
+}
+
+.f-countour {
+    max-width: 200px;
+    min-width: 200px;
+    max-height: 300px;
+    min-height: 300px;
+    border-color: gray;
+    border-style: solid;
+}

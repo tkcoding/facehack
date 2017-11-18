@@ -3,11 +3,28 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="text-center">
-          <div class="mb-2">
-            <ack-webcam [(ref)]="webcam" [options]="options" (success)="onCamSuccess($event)" (catch)="onCamError($event)"></ack-webcam>
-          </div>
-          <div class="mb-2">
-            <button (click)="genImage()" type="button" class="btn btn-light" [disabled]="disableCamSend"> Send Image </button>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-2">
+                <ack-webcam [(ref)]="webcam" [options]="options" (success)="onCamSuccess($event)" (catch)="onCamError($event)"></ack-webcam>
+              </div>
+              <div class="mb-2">
+                <button (click)="genImage()" type="button" class="btn btn-light" [disabled]="disableCamSend"> Send Image </button>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="mb-2">
+                  <img [src]="fcountour" alt="face contour" class="f-countour">
+              </div>
+              <div class="mb-2">
+                <div *ngIf="recs == [] || recs.length == 0; else elseBlock">
+                    <button type="button" class="btn btn-light" disabled> View Recommendations </button>
+                </div>
+                <ng-template #elseBlock>
+                    <button type="button" class="btn btn-light" (click)="gotoRec()"> View Recommendations </button>
+                </ng-template>
+              </div>             
+            </div>
           </div>
         </div>
         <h6>Upload an image to receive recommendations</h6>
@@ -15,7 +32,7 @@
           <input type="file" id="input1" accept="image/jpg" class="form-control" name="input1">
         </div>
         <div class="mb-2">
-          <button (click)="dostuff2('upload','input1')" type="button" class="btn btn-light" [disabled]="disableCamSend">Get Recommendations</button>
+          <button (click)="dostuff2('upload','input1')" type="button" class="btn btn-light" [disabled]="disableCamSend">Send Image</button>
         </div>
       </div>
     </div>
@@ -33,15 +50,14 @@
         <li class="list-group-item">
           <div class="row">
             <div class="col-md-2">
-              <img [src]="r.productImage" [alt]="r.pname" 
-              class="rounded-circle img-responsive" style="max-height:100px;">
+              <img [src]="r.productImage" [alt]="r.pname" class="rounded-circle img-responsive" style="max-height:100px;">
             </div>
             <div class="col-md-10">
               <h4 class="list-group-item-heading">{{r.pname}}</h4>
               <p class="list-group-item-text">{{r.description}}
                 <br>
                 <span class="text-muted">{{r.recommendation}}</span>
-              </p>              
+              </p>
             </div>
           </div>
         </li>
