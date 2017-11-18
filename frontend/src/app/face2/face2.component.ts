@@ -56,6 +56,8 @@ export class Face2Component implements OnInit {
 				result = xhr.responseText;
 				console.log('success!!');
 				this.postData(result);
+			}else {
+				this.disableCamSend = false;
 			}
 		}
 
@@ -74,8 +76,8 @@ export class Face2Component implements OnInit {
 				// if (item != null) {
 				// 	console.log(item);
 				// }
-				console.log(this.recs);
-				this.disableCamSend = false;
+				console.log(this.recs);				
+				this.disableCamSend = false;				
 			},
 			(error) => {
 				console.log(error);
