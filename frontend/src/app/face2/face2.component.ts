@@ -117,14 +117,13 @@ export class Face2Component implements OnInit {
 			this.fcountour = '';
 			return
 		}
-		// else if(jObj.objects.length !== 2) {
-		// 	console.log("this ran")
-		// 	this.changeErrorMessage('No face detected please try again');
-		// 	this.disableCamSend = false;
-		// 	this.recs = [];
-		// 	this.fcountour = '';
-		// 	return
-		// }
+		else if(jObj.objects.length !== 2) {			
+			this.changeErrorMessage('Please reposition face');
+			this.disableCamSend = false;
+			this.recs = [];
+			this.fcountour = '';
+			return
+		}
 		let j = JSON.stringify(data);
 
 		this.itemService.postFaceData(j).subscribe(
