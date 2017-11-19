@@ -63,6 +63,8 @@ export class Face2Component implements OnInit {
 		this.disableAndClear();
 		var files;
 		var file;
+		let fr: FileReader;
+		let img;
 		if (callType === 'cam') {
 			file = data;
 		} else {
@@ -70,6 +72,21 @@ export class Face2Component implements OnInit {
 			files = fileInput.files;
 			file = files[0];
 		}
+
+		if (file !== undefined) {
+			fr = new FileReader();
+			fr.onload = () => {
+				img = new Image();
+				img.onload = () => {
+					let c = document.getElementById('canvas-img') as HTMLCanvasElement;
+					let ctx = c.getContext('2d');
+					ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 300, 150);
+				}
+				img.src = fr.result;
+			}
+			fr.readAsDataURL(file);
+		}
+
 
 		var xhr = new XMLHttpRequest();
 		var result
@@ -92,8 +109,6 @@ export class Face2Component implements OnInit {
 
 	postData(data) {
 		let jObj = JSON.parse(data);
-		console.log(jObj.objects);
-		console.log(jObj.objects.length);
 		if (jObj.objects.length > 2) {
 			this.changeErrorMessage('Ensure only 1 user is visible');
 			this.disableCamSend = false;
@@ -101,6 +116,14 @@ export class Face2Component implements OnInit {
 			this.fcountour = '';
 			return
 		}
+		// else if(jObj.objects.length !== 2) {
+		// 	console.log("this ran")
+		// 	this.changeErrorMessage('No face detected please try again');
+		// 	this.disableCamSend = false;
+		// 	this.recs = [];
+		// 	this.fcountour = '';
+		// 	return
+		// }
 		let j = JSON.stringify(data);
 
 		this.itemService.postFaceData(j).subscribe(
