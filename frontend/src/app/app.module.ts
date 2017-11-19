@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { TopNavComponent } from './ui/top-nav/top-nav.component';
 import { DropdownDirective } from './ui/dropdown.directive';
 import { FooterComponent } from './ui/footer/footer.component';
-import { ItemsComponent } from './items/items.component';
 import { ItemsService } from './services/items.service';
 import { FaceComponent } from './face/face.component';
 import { Face2Component } from './face2/face2.component';
@@ -23,7 +22,6 @@ import { Face2Component } from './face2/face2.component';
     TopNavComponent,
     DropdownDirective,
     FooterComponent,
-    ItemsComponent,
     FaceComponent,
     Face2Component
   ],
