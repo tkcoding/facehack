@@ -13,7 +13,6 @@ import { TopNavComponent } from './ui/top-nav/top-nav.component';
 import { DropdownDirective } from './ui/dropdown.directive';
 import { FooterComponent } from './ui/footer/footer.component';
 import { ItemsService } from './services/items.service';
-import { FaceComponent } from './face/face.component';
 import { Face2Component } from './face2/face2.component';
 
 @NgModule({
@@ -22,7 +21,6 @@ import { Face2Component } from './face2/face2.component';
     TopNavComponent,
     DropdownDirective,
     FooterComponent,
-    FaceComponent,
     Face2Component
   ],
   imports: [

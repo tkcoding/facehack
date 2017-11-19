@@ -19,6 +19,7 @@ export class Face2Component implements OnInit {
 	fcountour: string;
 	private _error = new Subject<string>();
 	errorMessage: string;
+	private apiKey = "fGF1DfdEWCeTaAqAdEsHXY0MMuo92avXuOhL";
 
 	constructor(private itemService: ItemsService, private http: Http) {
 		this.recs = new Array<Rec>();
@@ -103,7 +104,7 @@ export class Face2Component implements OnInit {
 
 		xhr.open("POST", "https://dev.sighthoundapi.com/v1/detections?type=face,person&faceOption=landmark,gender");
 		xhr.setRequestHeader("Content-type", "application/octet-stream");
-		xhr.setRequestHeader("X-Access-Token", "fGF1DfdEWCeTaAqAdEsHXY0MMuo92avXuOhL");
+		xhr.setRequestHeader("X-Access-Token", this.apiKey);
 		xhr.send(file);
 	}// dostuff2 end
 
